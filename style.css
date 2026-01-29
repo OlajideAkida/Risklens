@@ -1,0 +1,645 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f23;
+    color: #e2e8f0;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Background Particles */
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(59, 130, 246, 0.4);
+    border-radius: 50%;
+    animation: particleFloat 8s linear infinite;
+}
+
+.particle:nth-child(2) {
+    background: rgba(139, 92, 246, 0.4);
+    animation-delay: -2s;
+    animation-duration: 10s;
+}
+
+.particle:nth-child(3) {
+    background: rgba(34, 197, 94, 0.4);
+    animation-delay: -4s;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(4) {
+    background: rgba(59, 130, 246, 0.3);
+    animation-delay: -6s;
+    animation-duration: 9s;
+}
+
+.particle:nth-child(5) {
+    background: rgba(139, 92, 246, 0.3);
+    animation-delay: -1s;
+    animation-duration: 11s;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Subtle Background Animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
+    animation: backgroundFloat 15s ease-in-out infinite;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(59, 130, 246, 0.03) 49%, rgba(59, 130, 246, 0.03) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.03) 49%, rgba(139, 92, 246, 0.03) 51%, transparent 52%);
+    background-size: 40px 40px;
+    animation: gridMove 25s linear infinite;
+    z-index: -1;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(50px, -40px) rotate(2deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-30px, 30px) rotate(-1deg);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translate(40px, -20px) rotate(1.5deg);
+        opacity: 0.8;
+    }
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(40px, 40px);
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Header */
+.header {
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #2d3748;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.header h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+/* Main Content */
+.main-content {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+.explanation-block {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.explanation-block p {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+}
+
+.risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Risk Cards */
+.risk-card {
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(5px);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+.risk-card:hover {
+    border-color: #64748b;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.asset-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.risk-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.risk-badge.low {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.risk-badge.medium {
+    background: rgba(234, 179, 8, 0.1);
+    color: #eab308;
+    border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.risk-badge.high {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.risk-score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.75rem 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.risk-score.low {
+    color: #22c55e;
+}
+
+.risk-score.medium {
+    color: #eab308;
+}
+
+.risk-score.high {
+    color: #ef4444;
+}
+
+.risk-explanation {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.timestamp {
+    color: #64748b;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Footer */
+.footer {
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #2d3748;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.footer p {
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.powered-by {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.75rem;
+}
+
+.powered-by strong {
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+.click-hint {
+    color: #64748b;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.risk-card:hover .click-hint {
+    opacity: 1;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: rgba(30, 41, 59, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease-out;
+    position: relative;
+    z-index: 1001;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+}
+
+.modal-header h2 {
+    color: #f8fafc;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #f8fafc;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.current-risk {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.current-risk .risk-score {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.risk-trend {
+    margin-bottom: 2rem;
+}
+
+.risk-trend h3 {
+    color: #f8fafc;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+}
+
+.trend-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.trend-text {
+    font-weight: 500;
+}
+
+.trend-change {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.trend-up { color: #ef4444; }
+.trend-down { color: #22c55e; }
+.trend-stable { color: #64748b; }
+
+.avg-risk {
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+.risk-history {
+    margin-bottom: 2rem;
+}
+
+.risk-history h3 {
+    color: #f8fafc;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.history-chart {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+    height: 120px;
+    padding: 1rem;
+    background: #0f172a;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+}
+
+.history-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bar {
+    width: 100%;
+    min-height: 4px;
+    border-radius: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}
+
+.bar.low { background: #22c55e; }
+.bar.medium { background: #eab308; }
+.bar.high { background: #ef4444; }
+
+.day-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.risk-details h3 {
+    color: #f8fafc;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+}
+
+.risk-details p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.risk-details time {
+    color: #64748b;
+    font-size: 0.875rem;
+}
+/* Loading and Error States */
+.loading-state, .error-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    color: #94a3b8;
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #334155;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-state p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-state p {
+    color: #f87171;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.error-state button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.2s ease;
+}
+
+.error-state button:hover {
+    background: #2563eb;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.risk-card {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .header h1 {
+        font-size: 1.875rem;
+    }
+    
+    .subtitle {
+        font-size: 0.875rem;
+    }
+    
+    .risk-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .main-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .risk-card {
+        padding: 1.25rem;
+    }
+    
+    .risk-score {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    
+    .risk-badge {
+        align-self: flex-start;
+    }
+}

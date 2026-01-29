@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 25%; animation-delay: -2s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: -4s;"></div>
+        <div class="particle" style="left: 75%; animation-delay: -6s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: -1s;"></div>
+    </div>
+
+    <header class="header">
+        <h1>RiskLens</h1>
+        <p class="subtitle">Transparent risk signals powered by 0G</p>
+    </header>
+
+    <main class="main-content">
+        <section class="explanation-block">
+            <p>This dashboard publishes immutable risk signals on 0G storage, ensuring transparency and auditability for all risk assessments.</p>
+        </section>
+        
+        <section class="risk-dashboard" aria-label="Risk Assessment Dashboard">
+            <h2 class="visually-hidden">Asset Risk Assessments</h2>
+            <div class="risk-grid" id="riskGrid" role="grid" aria-label="Risk assessment cards">
+                <!-- Risk cards will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Risk data stored on 0G storage</p>
+        <aside class="powered-by" aria-label="Technology provider">
+            <span>Powered by</span>
+            <strong>0G</strong>
+        </aside>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
